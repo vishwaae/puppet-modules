@@ -1,0 +1,11 @@
+storage "file" {
+  path = "<%= @config_dir %>/data"
+}
+
+listener "tcp" {
+  address     = "<%= @listen_address %>:<%= @listen_port %>"
+  tls_disable = <%= @tls_disable %>
+}
+
+ui            = <%= @ui_enabled %>
+disable_mlock = <%= @disable_mlock %>

@@ -1,0 +1,12 @@
+[Unit]
+Description=HashiCorp Vault
+After=network.target
+
+[Service]
+ExecStart=<%= @install_dir %>/vault server -config=<%= @config_dir %>/config.hcl
+User=<%= @user %>
+Group=<%= @group %>
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
