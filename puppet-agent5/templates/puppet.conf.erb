@@ -1,0 +1,9 @@
+[main]
+certname = <%= @certname %>
+server = <%= @server %>
+masterport = <%= @masterport %>
+ca = false
+ca_server = <%= @ca_server %>
+ca_port = <%= @ca_port %>
+certificate_revocation = <%= @certificate_revocation %>
+dns_alt_names = <%= @certname %>,<%= @private_ip %>,<%= @server %>
