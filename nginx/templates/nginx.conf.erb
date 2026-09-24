@@ -1,0 +1,31 @@
+# Managed by Puppet (nginx module) - manual edits are overwritten
+user nginx;
+worker_processes <%= @worker_processes || 'auto' %>;
+error_log /var/log/nginx/error.log;
+pid /run/nginx.pid;
+include /usr/share/nginx/modules/*.conf;
+
+events {
+    worker_connections <%= @worker_connections || 1024 %>;
+}
+
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+    access_log  /var/log/nginx/access.log  main;
+    sendfile            on;
+    tcp_nopush          on;
+    keepalive_timeout   65;
+    include             /etc/nginx/mime.types;
+    default_type        application/octet-stream;
+    include /etc/nginx/conf.d/*.conf;
+<% if @default_vhost -%>
+
+    server {
+        listen       80 default_server;
+        server_name  _;
+        root         /usr/share/nginx/html;
+    }
+<% end -%>
+}
