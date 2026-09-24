@@ -1,1 +1,9 @@
-{ "name": "vishwaae-nginx", "version": "1.0.0", "author": "vishwaae", "license": "Apache-2.0" }
+{
+  "name": "vishwaae-nginx",
+  "version": "1.0.0",
+  "author": "vishwaae",
+  "summary": "Internal nginx module",
+  "license": "Apache-2.0",
+  "source": "https://github.com/vishwaae/puppet-modules",
+  "dependencies": []
+}

@@ -2,7 +2,8 @@
   "name": "vishwaae-puppet_agent5",
   "version": "1.0.0",
   "author": "vishwaae",
-  "summary": "Manages the full agent identity/config for Puppet 5 nodes — puppet.conf, custom fact, base packages, the agent daemon. Pinned on every hostgroup; swap for puppet_agent7 to migrate.",
+  "summary": "Internal puppet_agent5 module",
   "license": "Apache-2.0",
+  "source": "https://github.com/vishwaae/puppet-modules",
   "dependencies": []
 }

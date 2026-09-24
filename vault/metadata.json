@@ -1,1 +1,9 @@
-{ "name": "vishwaae-vault", "version": "1.2.0", "author": "vishwaae", "license": "Apache-2.0" }
+{
+  "name": "vishwaae-vault",
+  "version": "1.2.0",
+  "author": "vishwaae",
+  "summary": "Internal vault module",
+  "license": "Apache-2.0",
+  "source": "https://github.com/vishwaae/puppet-modules",
+  "dependencies": []
+}
