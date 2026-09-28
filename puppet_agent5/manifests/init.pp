@@ -69,7 +69,7 @@ class puppet_agent5 (
 
   # Custom fact — moved here from post_script.sh. Puppet manages its own
   # classification-support fact from here on.
-  file { '/etc/puppetlabs/facter/facts.d':
+  file { ['/etc/puppetlabs/facter', '/etc/puppetlabs/facter/facts.d']:
     ensure => directory,
   }
   file { '/etc/puppetlabs/facter/facts.d/intended_hostgroup.sh':
