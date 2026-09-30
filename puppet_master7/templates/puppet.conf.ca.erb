@@ -1,0 +1,13 @@
+[main]
+certname = <%= @certname %>
+server = <%= @server %>
+<% if @installed_major >= 7 -%>
+serverport = <%= @serverport %>
+cadir = /etc/puppetlabs/puppet/ssl/ca
+<% else -%>
+masterport = <%= @serverport %>
+ca = true
+<% end -%>
+ca_server = <%= @ca_server %>
+ca_port = <%= @ca_port %>
+dns_alt_names = <%= @certname %>,<%= @short %>,<%= @short %>.local,<%= @ip %>

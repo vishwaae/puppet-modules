@@ -1,0 +1,18 @@
+[main]
+node_terminus = exec
+external_nodes = /etc/puppetlabs/puppet/node.rb
+storeconfigs = true
+storeconfigs_backend = puppetdb
+reports = puppetdb
+certname = <%= @certname %>
+server = <%= @server %>
+<% if @installed_major >= 7 -%>
+serverport = <%= @serverport %>
+<% else -%>
+masterport = <%= @serverport %>
+ca = false
+<% end -%>
+ca_server = <%= @ca_server %>
+ca_port = <%= @ca_port %>
+certificate_revocation = false
+dns_alt_names = <%= @certname %>,<%= @certname %>.local,<%= @ip %>,<%= @server %>
