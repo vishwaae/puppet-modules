@@ -1,0 +1,9 @@
+{
+  "name": "vishwaae-puppet_agent7",
+  "version": "1.0.0",
+  "author": "vishwaae",
+  "summary": "Puppet 7 agent: repo, pinned package, puppet.conf, base packages, custom fact, puppet service",
+  "license": "Apache-2.0",
+  "source": "https://github.com/vishwaae/puppet-modules",
+  "dependencies": []
+}

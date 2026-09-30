@@ -1,0 +1,9 @@
+{
+  "name": "vishwaae-puppet_master7",
+  "version": "1.0.0",
+  "author": "vishwaae",
+  "summary": "Puppet server side (masters + CA): config per installed version, optional upgrade to Puppet 7",
+  "license": "Apache-2.0",
+  "source": "https://github.com/vishwaae/puppet-modules",
+  "dependencies": []
+}
