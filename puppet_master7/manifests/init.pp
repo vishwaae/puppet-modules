@@ -40,39 +40,21 @@ class puppet_master7 (
   $ip              = $facts['networking']['ip']
   $installed_major = Integer(split($facts['puppetversion'], '[.]')[0])
 
-  # ---------- packages (upgrade mode only) ----------
-  if $manage_packages {
-    yumrepo { 'puppet7':
-      baseurl  => $repo_baseurl,
-      descr    => 'Puppet 7 Repository',
-      enabled  => 1,
-      gpgcheck => 1,
-      gpgkey   => $repo_gpgkey,
+  # ---------- upgrade (only when asked AND Puppet 5 is installed) ----------
+  # Runs in a final stage, after the config resources of this run.
+  if $manage_packages and $installed_major == 5 {
+    stage { 'puppet_upgrade':
+      require => Stage['main'],
     }
-    yumrepo { 'puppet5':
-      enabled => 0,
-    }
-    package { 'puppet-agent':
-      ensure  => $agent_version,
-      require => Yumrepo['puppet7'],
-    }
-    package { 'puppetserver':
-      ensure  => $puppetserver_version,
-      require => Package['puppet-agent'],
-      notify  => Service['puppetserver'],
-    }
-    if $type == 'master' {
-      package { 'puppetdb-termini':
-        ensure  => $termini_version,
-        require => Yumrepo['puppet7'],
-        notify  => Service['puppetserver'],
-      }
-      # r10k lives in the agent's Ruby; a new agent brings a new Ruby.
-      package { 'r10k':
-        ensure   => $r10k_version,
-        provider => 'puppet_gem',
-        require  => Package['puppet-agent'],
-      }
+    class { 'puppet_master7::upgrade':
+      stage                => 'puppet_upgrade',
+      type                 => $type,
+      repo_baseurl         => $repo_baseurl,
+      repo_gpgkey          => $repo_gpgkey,
+      agent_version        => $agent_version,
+      puppetserver_version => $puppetserver_version,
+      termini_version      => $termini_version,
+      r10k_version         => $r10k_version,
     }
   }
 

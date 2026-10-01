@@ -1,6 +1,6 @@
 {
   "name": "vishwaae-puppet_master7",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "vishwaae",
   "summary": "Puppet server side (masters + CA): config per installed version, optional upgrade to Puppet 7",
   "license": "Apache-2.0",

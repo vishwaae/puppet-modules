@@ -1,7 +1,11 @@
 [main]
 certname = <%= @certname %>
 server = <%= @server %>
+<% if @installed_major >= 7 -%>
 serverport = <%= @serverport %>
+<% else -%>
+masterport = <%= @serverport %>
+<% end -%>
 ca_server = <%= @ca_server %>
 ca_port = <%= @ca_port %>
 certificate_revocation = <%= @certificate_revocation %>

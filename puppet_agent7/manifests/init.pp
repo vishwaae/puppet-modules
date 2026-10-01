@@ -41,9 +41,21 @@ class puppet_agent7 (
     enabled => 0,
   }
 
-  package { 'puppet-agent':
-    ensure  => $agent_version,
-    require => Yumrepo['puppet7'],
+  # Which Puppet is running this catalog right now (5 before the upgrade, 7 after).
+  $installed_major = Integer(split($facts['puppetversion'], '[.]')[0])
+
+  # Upgrade only if Puppet 5 is installed. A node already on 7 (or newer)
+  # gets no package action at all. The upgrade runs in a final stage, after
+  # every other resource of this run, and yum replaces 5 with 7 in place
+  # (same package name): no uninstall, SSL certs/keys untouched.
+  if $installed_major == 5 {
+    stage { 'puppet_upgrade':
+      require => Stage['main'],
+    }
+    class { 'puppet_agent7::upgrade':
+      stage   => 'puppet_upgrade',
+      version => $agent_version,
+    }
   }
 
   # Full, final puppet.conf — replaces post_script.sh's minimal bootstrap

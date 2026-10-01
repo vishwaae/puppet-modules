@@ -3,10 +3,13 @@ certname = <%= @certname %>
 server = <%= @server %>
 <% if @installed_major >= 7 -%>
 serverport = <%= @serverport %>
-cadir = /etc/puppetlabs/puppet/ssl/ca
 <% else -%>
 masterport = <%= @serverport %>
+<% end -%>
+<% if @installed_major < 7 && !@manage_packages -%>
 ca = true
+<% else -%>
+cadir = /etc/puppetlabs/puppet/ssl/ca
 <% end -%>
 ca_server = <%= @ca_server %>
 ca_port = <%= @ca_port %>

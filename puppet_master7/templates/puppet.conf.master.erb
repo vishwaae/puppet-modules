@@ -5,6 +5,8 @@ server = <%= @server %>
 serverport = <%= @serverport %>
 <% else -%>
 masterport = <%= @serverport %>
+<% end -%>
+<% if @installed_major < 7 && !@manage_packages -%>
 ca = false
 <% end -%>
 ca_server = <%= @ca_server %>
