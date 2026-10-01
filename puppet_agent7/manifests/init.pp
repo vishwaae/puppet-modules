@@ -91,6 +91,13 @@ class puppet_agent7 (
   file { ['/etc/puppetlabs/facter', '/etc/puppetlabs/facter/facts.d']:
     ensure => directory,
   }
+
+  file { '/etc/puppetlabs/facter/facter.conf':
+    ensure  => file,
+    content => "facts : {\n    blocklist : [ \"ec2_userdata\" ]\n}\n",
+    require => File['/etc/puppetlabs/facter'],
+  }
+  
   file { '/etc/puppetlabs/facter/facts.d/intended_hostgroup.sh':
     ensure => file,
     mode   => '0755',
